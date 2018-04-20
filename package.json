@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
+  "homepage": "https://github.com/xujif/async-hooks-storage",
   "author": "i@xujif.com",
   "description": "A Thread-local storage (TLS) like Map implementation, base on node async hooks, support nodejs & typescript",
   "license": "MIT",
