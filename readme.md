@@ -1,4 +1,7 @@
-
+[![NPM version][npm-image]][npm-url]
+[![node version][node-image]][node-url]
+[![npm download][download-image]][download-url]
+[![npm license][license-image]][download-url]
 ### A Thread-local storage (TLS) like Map implementation, base on node async hooks, support nodejs & typescript
 
 - #### thread local support for nodejs & typescript
@@ -152,3 +155,18 @@ class AsyncHookMap<K = any, V = any> {
 }
 
 ```
+
+
+[npm-image]: https://img.shields.io/npm/v/async-hooks-storage.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/async-hooks-storage
+[travis-image]: https://img.shields.io/travis/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
+[travis-url]: https://travis-ci.org/https://github.com/xujif/async-hooks-storage
+[coveralls-image]: https://img.shields.io/coveralls/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/https://github.com/xujif/async-hooks-storage?branch=master
+[david-image]: https://img.shields.io/david/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
+[david-url]: https://david-dm.org/https://github.com/xujif/async-hooks-storage
+[node-image]: https://img.shields.io/badge/node.js-%3E=_8.6.0-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+[download-image]: https://img.shields.io/npm/dm/async-hooks-storage.svg?style=flat-square
+[download-url]: https://npmjs.org/package/async-hooks-storage
+[license-image]: https://img.shields.io/npm/l/async-hooks-storage.svg
