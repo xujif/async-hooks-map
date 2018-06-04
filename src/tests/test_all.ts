@@ -51,13 +51,13 @@ describe('Test AsyncHookMap', () => {
                 assert.equal(scope.get('aa'), 'second')
             }).then(() => {
                 assert.equal(scope.get('aa'), 'second')
-                assert.equal(scope.parent('ccc').get('aa'), 'first')
+                assert.equal(scope.closest('ccc').get('aa'), 'first')
                 // 'root' as alias of 'ccc'
-                assert.equal(scope.parent('root').get('aa'), 'first')
-                scope.parent().delete('aa')
+                assert.equal(scope.closest('root').get('aa'), 'first')
+                scope.parent()!.delete('aa')
                 // parent scope 'aa' has been delete, 'aa' will be first
                 assert.equal(scope.get('aa'), 'first')
-                scope.parent('ccc').set('bb', 'bb')
+                scope.closest('ccc').set('bb', 'bb')
                 assert.equal(scope.get('bb'), 'bb')
                 scope.delete('bb')
                 // can not be deleted ,because bb is set to "ccc" scope

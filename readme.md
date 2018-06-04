@@ -15,21 +15,21 @@
 
 ## install
 ```
-npm install async-hooks-storage
+npm install async-hooks-map
 ```
 
 ## import
 ```javascript
-const { AsyncHookMap } = require('async-hooks-storage')
+const { AsyncHookMap } = require('async-hooks-map')
 // or import a global instance
-//const scope = require('async-hooks-storage/global')
+//const scope = require('async-hooks-map/global')
 
 ```
 ## Usage
 
 typescript: 
 ```typescript
-    import { AsyncHookMap } from 'async-hooks-storage'
+    import { AsyncHookMap } from 'async-hooks-map'
     const scope = new AsyncHookMap()
 
     Promise.resolve().then(() => {
@@ -45,13 +45,13 @@ typescript:
             assert.equal(scope.get('aa'), 'second')
         }).then(() => {
             assert.equal(scope.get('aa'), 'second')
-            assert.equal(scope.parent('ccc').get('aa'), 'first')
+            assert.equal(scope.closest('ccc').get('aa'), 'first')
             // 'root' as alias of 'ccc'
-            assert.equal(scope.parent('root').get('aa'), 'first')
-            scope.parent().delete('aa')
+            assert.equal(scope.closest('root').get('aa'), 'first')
+            scope.closest().delete('aa')
             // parent scope 'aa' has been delete, 'aa' will be first
             assert.equal(scope.get('aa'), 'first')
-            scope.parent('ccc').set('bb', 'bb')
+            scope.closest('ccc').set('bb', 'bb')
             assert.equal(scope.get('bb'), 'bb')
             scope.delete('bb')
             // can not be deleted ,because bb is set to "ccc" scope
@@ -63,110 +63,30 @@ typescript:
 ```
 Api:
 ```typescript
-class AsyncHookMap<K = any, V = any> {
-    /**
-     * AsyncStorage
-     * default backend by node 8+ async-hooks
-     * @param {string} [asyncHooks=require('async_hooks')]
-     * @memberof AsyncHookMap
-     */
-    constructor(asyncHooks?: any);
-    /**
-     * disable the AsyncHook,and desctroy all scope
-     *
-     */
-    desctroy(): void;
-    /**
-     * alias of asyncHooks.executionAsyncId()
-     *
-     * @returns {number}
-     */
-    executionAsyncId(): number;
-    /**
-     * add alias of scope, a scope can own multi names
-     *
-     * @param {string} name
-     * @returns {this}
-     */
-    alias(name: string): this;
-    /**
-     * check the alias name
-     *
-     * @param {string} name
-     * @returns {this}
-     */
-    hasName(name: string): boolean | undefined;
-    /**
-     * get parent scope
-     * if name provided , return the named closest scope
-     * this method will throw an error if there is no parent
-     *
-     * @param {string} [name]
-     * @returns {TinyMap<K, V>}
-     * @memberof AsyncStorageInterface
-     */
-    parent(name?: string): AsyncScope<K, V>;
-    /**
-     * alias of parent
-     *
-     * @param {string} name
-     * @returns
-     * @memberof AsyncStorage
-     */
-    closest(name: string): AsyncScope<K, V>;
-    /**
-     * get from AsyncStorage
-     *
-     * @param {K} key
-     * @returns {(V | undefined)}
-     * @memberof AsyncStorage
-     */
-    get(key: K): V | undefined;
-    /**
-     * check key
-     * @param key
-     * @param recursion check forefathers?
-     */
-    has(key: K, recursion?: boolean): boolean;
-    /**
-     * set value to current async scope
-     * effect current scope and children
-     *
-     * @param {K} key
-     * @param {V} value
-     * @returns {this}
-     * @memberof AsyncStorage
-     */
-    set(key: K, value: V): this;
-    /**
-     * delete the value of current scope
-     *
-     * @param {K} key
-     * @returns {boolean}
-     * @memberof AsyncStorage
-     */
-    delete(key: K): boolean;
-    /**
-     * clear the current scope
-     *
-     * @memberof AsyncStorage
-     */
-    clear(): void;
+export interface AsyncMapNode<K, V> {
+    hasName (name: string): boolean
+    alias (name: string): this
+    parent (name?: string): AsyncMapNode<K, V> | undefined
+    closest (name: string): AsyncMapNode<K, V>
+    has (key: K, recurse?: boolean): boolean
+    get (key: K): V | undefined
+    set (key: K, value: V): this
+    clear (): void
+    delete (key: K): boolean
 }
-
 ```
 
 
-[npm-image]: https://img.shields.io/npm/v/async-hooks-storage.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/async-hooks-storage
-[travis-image]: https://img.shields.io/travis/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
-[travis-url]: https://travis-ci.org/https://github.com/xujif/async-hooks-storage
-[coveralls-image]: https://img.shields.io/coveralls/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/https://github.com/xujif/async-hooks-storage?branch=master
-[david-image]: https://img.shields.io/david/https://github.com/xujif/async-hooks-storage.svg?style=flat-square
-[david-url]: https://david-dm.org/https://github.com/xujif/async-hooks-storage
+[npm-image]: https://img.shields.io/npm/v/async-hooks-map.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/async-hooks-map
+[travis-image]: https://img.shields.io/travis/https://github.com/xujif/async-hooks-map.svg?style=flat-square
+[travis-url]: https://travis-ci.org/https://github.com/xujif/async-hooks-map
+[coveralls-image]: https://img.shields.io/coveralls/https://github.com/xujif/async-hooks-map.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/https://github.com/xujif/async-hooks-map?branch=master
+[david-image]: https://img.shields.io/david/https://github.com/xujif/async-hooks-map.svg?style=flat-square
+[david-url]: https://david-dm.org/https://github.com/xujif/async-hooks-map
 [node-image]: https://img.shields.io/badge/node.js-%3E=_8.6.0-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/async-hooks-storage.svg?style=flat-square
-[download-url]: https://npmjs.org/package/async-hooks-storage
-[license-image]: https://img.shields.io/npm/l/async-hooks-storage.svg
+[download-image]: https://img.shields.io/npm/dm/async-hooks-map.svg?style=flat-square
+[download-url]: https://npmjs.org/package/async-hooks-map
+[license-image]: https://img.shields.io/npm/l/async-hooks-map.svg

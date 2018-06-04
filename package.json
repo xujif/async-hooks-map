@@ -1,6 +1,6 @@
 {
-  "name": "async-hooks-storage",
-  "version": "1.0.1",
+  "name": "async-hooks-map",
+  "version": "1.0.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "homepage": "https://github.com/xujif/async-hooks-storage",
@@ -11,7 +11,8 @@
     "typescript",
     "Thread-local storage (TLS) ",
     "thread local",
-    "async hooks"
+    "async hooks",
+    "async hooks map"
   ],
   "scripts": {
     "compile": "tsc",
@@ -33,6 +34,5 @@
     "tslint-config-prettier": "^1.9.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "*"
-  },
-  "dependencies": {}
+  }
 }
