@@ -1,6 +1,6 @@
 {
   "name": "async-hooks-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "homepage": "https://github.com/xujif/async-hooks-storage",

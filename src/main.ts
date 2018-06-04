@@ -64,6 +64,9 @@ export class AsyncMapNode<K, V> {
         return false
     }
     closest (name: string) {
+        if (this.hasName(name)) {
+            return this
+        }
         const p = this.parent(name)
         if (!p) {
             throw new Error('cant find parent with name:' + name)
@@ -74,8 +77,7 @@ export class AsyncMapNode<K, V> {
         if (!name) {
             return this._parent
         }
-        let t: AsyncMapNode<K, V> | undefined
-        for (t = this; t; t = t._parent) {
+        for (let t = this._parent; t; t = t._parent) {
             if (t.hasName(name)) {
                 return t
             }

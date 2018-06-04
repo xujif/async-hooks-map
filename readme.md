@@ -6,12 +6,7 @@
 
 - #### thread local support for nodejs & typescript
 - #### named scope & chain support , easily to get closest forefather scope
-- #### browser or lower version of node if provided an async-hooks implementation with constructor
-
-### tips
-- .get(key: K) will find the key recursive
-- A scope can have multiple names
-- Top scope is named 'root' by default
+- #### browser or lower version of node support if provided an async-hooks implementation with constructor
 
 ## install
 ```
@@ -21,9 +16,6 @@ npm install async-hooks-map
 ## import
 ```javascript
 const { AsyncHookMap } = require('async-hooks-map')
-// or import a global instance
-//const scope = require('async-hooks-map/global')
-
 ```
 ## Usage
 
@@ -75,6 +67,11 @@ export interface AsyncMapNode<K, V> {
     delete (key: K): boolean
 }
 ```
+### tips
+- closest(name:string) contains this and parent(name?:string) not
+  closest will throw when cant find the scope and parent() will return undefined
+- A async scope can have multiple names
+- Top async scope is named 'root' by default
 
 
 [npm-image]: https://img.shields.io/npm/v/async-hooks-map.svg?style=flat-square
