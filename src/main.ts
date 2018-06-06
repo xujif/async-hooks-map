@@ -85,7 +85,7 @@ export class AsyncMapNode<K, V> {
     }
 }
 
-export class AsyncHookMap<K, V>{
+export class AsyncHookMap<K=any, V=any>{
     protected _store: { [k: number]: AsyncMapNode<K, V> } = {}
     protected _hook: {
         enable (): void
