@@ -1,8 +1,8 @@
 {
   "name": "async-hooks-map",
-  "version": "1.0.4",
-  "main": "dist/main.js",
-  "types": "dist/main.d.ts",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/xujif/async-hooks-storage",
   "author": "i@xujif.com",
   "description": "A Thread-local storage (TLS) like Map implementation, base on node async hooks, support nodejs & typescript",

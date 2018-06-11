@@ -22,6 +22,12 @@ const { AsyncHookMap } = require('async-hooks-map')
 typescript: 
 ```typescript
     import { AsyncHookMap } from 'async-hooks-map'
+    // import asyncHookMap from 'async-hooks-map'
+    // import global instance which is lazy initialize
+    // Object.defineProperty(exports, 'default', {
+    //     get () {}
+    // })
+
     const scope = new AsyncHookMap()
 
     Promise.resolve().then(() => {
